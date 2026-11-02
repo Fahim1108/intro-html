@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0b0d0b">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Admin sign in — NeedYourSite</title>
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/admin/assets/admin.css">
+</head>
+<body class="login-body">
+  <main class="login-shell">
+    <section class="login-art" aria-label="NeedYourSite studio">
+      <div class="login-art__grid" aria-hidden="true"></div>
+      <div class="login-art__inner">
+        <a class="admin-brand login-art__brand" href="/" aria-label="NeedYourSite — return to site">
+          <svg class="admin-brand__star" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M12 2.4v19.2M2.4 12h19.2M5.2 5.2l13.6 13.6M18.8 5.2 5.2 18.8"/>
+          </svg>
+          <span>NeedYourSite<span class="admin-brand__dot">.</span></span>
+        </a>
+        <div>
+          <p class="login-card__eyebrow">Studio access / 01</p>
+          <p class="login-art__copy">Run the studio.<br><em>Not the inbox.</em></p>
+        </div>
+        <div class="login-art__foot">
+          <span>Dhaka / Worldwide</span>
+          <span>Admin workspace</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="login-panel">
+      <div class="login-card">
+        <p class="login-card__eyebrow">Admin access</p>
+        <h1>Welcome<br><em>back.</em></h1>
+        <p class="login-card__sub">Sign in to manage project inquiries, published work and service pricing.</p>
+
+        <div class="login-error" id="loginError" role="alert" tabindex="-1" hidden></div>
+
+        <form class="login-form" id="loginForm" novalidate>
+          <div class="afield">
+            <label for="loginEmail">Email address</label>
+            <input class="input" id="loginEmail" name="email" type="email" autocomplete="username" inputmode="email" required>
+          </div>
+          <div class="afield">
+            <label for="loginPassword">Password</label>
+            <input class="input" id="loginPassword" name="password" type="password" autocomplete="current-password" required>
+            <div class="login-form__row">
+              <button class="password-toggle" id="passwordToggle" type="button" aria-pressed="false">Show password</button>
+            </div>
+          </div>
+          <button class="abtn abtn--primary" id="loginSubmit" type="submit">Sign in <span aria-hidden="true">↗</span></button>
+        </form>
+
+        <a class="login-back" href="/">← Back to public site</a>
+        <p class="login-footer">Secure admin area. Session cookies are HTTP-only and expire after eight hours. Only the studio owner should have access.</p>
+      </div>
+    </section>
+  </main>
+  <script src="/admin/assets/login.js" defer></script>
+</body>
+</html>

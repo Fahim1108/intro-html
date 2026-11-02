@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f3eee3">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Projects — NeedYourSite Admin</title>
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/admin/assets/admin.css">
+</head>
+<body class="admin-body" data-page="projects">
+  <div class="admin-shell">
+    <div class="admin-overlay" id="adminOverlay" hidden></div>
+    <aside class="admin-sidebar" id="adminSidebar" aria-label="Admin navigation">
+      <div class="admin-sidebar__brand">
+        <a class="admin-brand admin-brand--admin" href="/admin" aria-label="NeedYourSite admin — overview">
+          <svg class="admin-brand__star" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2.4v19.2M2.4 12h19.2M5.2 5.2l13.6 13.6M18.8 5.2 5.2 18.8"/></svg>
+          <span>NeedYourSite<span class="admin-brand__dot">.</span></span>
+        </a>
+        <p class="admin-sidebar__studio">Studio admin / 2026</p>
+      </div>
+      <nav class="admin-nav" id="adminNav" aria-label="Admin sections"></nav>
+      <div class="admin-sidebar__spacer"></div>
+      <div class="admin-sidebar__foot">
+        <div class="admin-sidebar__user"><span class="admin-avatar" data-admin-initials>NY</span><span data-admin-email>Signed in</span></div>
+        <a class="admin-sidebar__link" href="/" target="_blank" rel="noopener">View public site <span aria-hidden="true">↗</span></a>
+        <button class="admin-sidebar__link" type="button" data-logout>Sign out <span aria-hidden="true">↖</span></button>
+      </div>
+    </aside>
+
+    <div class="admin-main">
+      <header class="admin-topbar">
+        <div class="admin-topbar__inner">
+          <div class="admin-topbar__left">
+            <button class="admin-menu-button" id="adminMenuToggle" type="button" aria-label="Open admin menu" aria-expanded="false" aria-controls="adminSidebar">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 5h18M3 12h18M3 19h18"/></svg>
+            </button>
+            <p class="admin-topbar__crumb">Studio / Projects</p>
+          </div>
+          <div class="admin-topbar__right"><a class="admin-topbar__site" href="/" target="_blank" rel="noopener">View site <span aria-hidden="true">↗</span></a></div>
+        </div>
+      </header>
+
+      <main class="admin-page">
+        <header class="admin-page-head">
+          <div>
+            <p class="admin-eyebrow">Portfolio</p>
+            <h1 class="admin-title">Selected<br><em>work.</em></h1>
+            <p class="admin-sub">Add, edit or remove projects. Published projects appear in the work section automatically.</p>
+          </div>
+          <div class="admin-page-actions">
+            <button class="abtn abtn--primary" id="addProject" type="button">Add project <span aria-hidden="true">+</span></button>
+          </div>
+        </header>
+
+        <section aria-labelledby="projectsTitle">
+          <div class="panel__head panel__head--standalone">
+            <div>
+              <p class="admin-eyebrow">Live portfolio</p>
+              <h2 class="panel__title" id="projectsTitle">Published projects</h2>
+            </div>
+            <p class="panel__meta" id="projectsCount">Loading…</p>
+          </div>
+          <div id="projectsGrid" aria-live="polite">
+            <div class="loading-state"><span class="spinner" aria-hidden="true"></span> Loading projects</div>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <dialog class="adialog adialog--wide" id="projectDialog" aria-labelledby="projectDialogTitle">
+    <form id="projectForm" novalidate>
+      <div class="adialog__head">
+        <div>
+          <p class="adialog__label" id="projectDialogLabel">Add to the portfolio</p>
+          <h2 class="adialog__title" id="projectDialogTitle">New project</h2>
+        </div>
+        <button class="adialog__close" type="button" data-project-cancel aria-label="Close project form">×</button>
+      </div>
+      <div class="adialog__body">
+        <div class="aform__error" id="projectFormError" role="alert" hidden></div>
+        <input type="hidden" id="projectId" name="id">
+        <div class="aform aform-grid">
+          <div class="afield">
+            <label for="projectName">Project name <span class="req" aria-hidden="true">*</span></label>
+            <input class="input" id="projectName" name="name" type="text" required maxlength="100" autocomplete="off">
+            <p class="afield__error" id="projectNameError" aria-live="polite"></p>
+          </div>
+          <div class="afield">
+            <label for="projectCategory">Category <span class="req" aria-hidden="true">*</span></label>
+            <input class="input" id="projectCategory" name="category" type="text" required maxlength="100" placeholder="Dental chamber / Chattogram / 2026" autocomplete="off">
+            <p class="afield__error" id="projectCategoryError" aria-live="polite"></p>
+          </div>
+          <div class="afield afield--full">
+            <label for="projectDescription">Short description <span class="req" aria-hidden="true">*</span></label>
+            <textarea class="textarea" id="projectDescription" name="description" required maxlength="1500" rows="4"></textarea>
+            <p class="afield__error" id="projectDescriptionError" aria-live="polite"></p>
+          </div>
+          <div class="afield">
+            <label for="projectServices">Services provided</label>
+            <input class="input" id="projectServices" name="services" type="text" maxlength="300" placeholder="Design / Development / Mobile UX" autocomplete="off">
+            <p class="afield__error" id="projectServicesError" aria-live="polite"></p>
+          </div>
+          <div class="afield">
+            <label for="projectUrl">Project URL</label>
+            <input class="input" id="projectUrl" name="projectUrl" type="url" maxlength="500" placeholder="https://example.com" autocomplete="url">
+            <p class="afield__error" id="projectUrlError" aria-live="polite"></p>
+          </div>
+          <div class="afield afield--full">
+            <label for="projectCover">Cover image</label>
+            <input class="input" id="projectCover" name="cover" type="file" accept="image/jpeg,image/png,image/webp">
+            <p class="afield__hint">JPG, PNG or WebP. 5 MB maximum. Leave empty to keep the current cover.</p>
+            <p class="afield__error" id="projectCoverError" aria-live="polite"></p>
+          </div>
+          <div class="afield afield--full cover-preview">
+            <div class="cover-preview__frame" id="coverPreview">
+              <span>No cover selected</span>
+            </div>
+            <div class="checkbox-row" id="removeCoverRow" hidden>
+              <input type="checkbox" id="removeCover" name="removeCover">
+              <div>
+                <label for="removeCover">Remove the current cover image</label>
+                <p>The project will fall back to the branded placeholder.</p>
+              </div>
+            </div>
+          </div>
+          <div class="afield afield--full">
+            <div class="checkbox-row">
+              <input type="checkbox" id="projectFeatured" name="featured" checked>
+              <div>
+                <label for="projectFeatured">Feature this project</label>
+                <p>Featured projects appear first in the public selected work section.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="adialog__foot">
+        <button class="abtn" type="button" data-project-cancel>Cancel</button>
+        <button class="abtn abtn--primary" id="saveProject" type="submit">Save project <span aria-hidden="true">↗</span></button>
+      </div>
+    </form>
+  </dialog>
+
+  <noscript><p class="noscript-banner">Portfolio management needs JavaScript. Please enable it to continue.</p></noscript>
+  <script src="/admin/assets/admin.js" defer></script>
+  <script src="/admin/assets/projects.js" defer></script>
+</body>
+</html>
