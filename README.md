@@ -103,7 +103,7 @@ src/routes/admin.js       Authenticated admin APIs
 
 A Render Blueprint is included in [`render.yaml`](render.yaml). It defines a paid Node web service with a 1 GB persistent disk mounted at `/var/data`.
 
-1. Push this repository to GitHub with the app at the repository root.
+1. Push the app to GitHub with it at the repository root. If `main` is protected, merge it through a pull request; the prepared `deploy/render` branch can be used for that PR.
 2. In Render, choose **New → Blueprint**, connect the repository and select the `main` branch.
 3. Apply the Blueprint. When prompted, set:
    - `ADMIN_EMAIL` — the owner email for the first admin account.
