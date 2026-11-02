@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f3eee3">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Overview — NeedYourSite Admin</title>
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/admin/assets/admin.css">
+</head>
+<body class="admin-body" data-page="overview">
+  <div class="admin-shell">
+    <div class="admin-overlay" id="adminOverlay" hidden></div>
+    <aside class="admin-sidebar" id="adminSidebar" aria-label="Admin navigation">
+      <div class="admin-sidebar__brand">
+        <a class="admin-brand admin-brand--admin" href="/admin" aria-label="NeedYourSite admin — overview">
+          <svg class="admin-brand__star" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M12 2.4v19.2M2.4 12h19.2M5.2 5.2l13.6 13.6M18.8 5.2 5.2 18.8"/>
+          </svg>
+          <span>NeedYourSite<span class="admin-brand__dot">.</span></span>
+        </a>
+        <p class="admin-sidebar__studio">Studio admin / 2026</p>
+      </div>
+      <nav class="admin-nav" id="adminNav" aria-label="Admin sections"></nav>
+      <div class="admin-sidebar__spacer"></div>
+      <div class="admin-sidebar__foot">
+        <div class="admin-sidebar__user">
+          <span class="admin-avatar" data-admin-initials>NY</span>
+          <span data-admin-email>Signed in</span>
+        </div>
+        <a class="admin-sidebar__link" href="/" target="_blank" rel="noopener">View public site <span aria-hidden="true">↗</span></a>
+        <button class="admin-sidebar__link" type="button" data-logout>Sign out <span aria-hidden="true">↖</span></button>
+      </div>
+    </aside>
+
+    <div class="admin-main">
+      <header class="admin-topbar">
+        <div class="admin-topbar__inner">
+          <div class="admin-topbar__left">
+            <button class="admin-menu-button" id="adminMenuToggle" type="button" aria-label="Open admin menu" aria-expanded="false" aria-controls="adminSidebar">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 5h18M3 12h18M3 19h18"/></svg>
+            </button>
+            <p class="admin-topbar__crumb">Studio / Overview</p>
+          </div>
+          <div class="admin-topbar__right">
+            <a class="admin-topbar__site" href="/" target="_blank" rel="noopener">View site <span aria-hidden="true">↗</span></a>
+          </div>
+        </div>
+      </header>
+
+      <main class="admin-page">
+        <header class="admin-page-head">
+          <div>
+            <p class="admin-eyebrow">Good to see you</p>
+            <h1 class="admin-title">The studio<br><em>at a glance.</em></h1>
+            <p class="admin-sub">Everything that needs a reply, a decision or a price — in one place.</p>
+          </div>
+          <div class="admin-page-actions">
+            <a class="abtn abtn--primary" href="/admin/inquiries">View inquiries <span aria-hidden="true">↗</span></a>
+          </div>
+        </header>
+
+        <section class="stats-grid" aria-label="Inquiry statistics" id="statsGrid">
+          <div class="stat stat--accent">
+            <span class="stat__label">Total inquiries</span>
+            <strong class="stat__value" data-stat="total">—</strong>
+            <span class="stat__hint">All time</span>
+          </div>
+          <div class="stat">
+            <span class="stat__label">New inquiries</span>
+            <strong class="stat__value" data-stat="new">—</strong>
+            <span class="stat__hint">Awaiting first reply</span>
+          </div>
+          <div class="stat">
+            <span class="stat__label">Contacted</span>
+            <strong class="stat__value" data-stat="contacted">—</strong>
+            <span class="stat__hint">A conversation has started</span>
+          </div>
+          <div class="stat">
+            <span class="stat__label">Confirmed projects</span>
+            <strong class="stat__value" data-stat="confirmed">—</strong>
+            <span class="stat__hint">Ready to build</span>
+          </div>
+        </section>
+
+        <section class="panel" aria-labelledby="recentTitle">
+          <div class="panel__head">
+            <div>
+              <p class="admin-eyebrow">Latest activity</p>
+              <h2 class="panel__title" id="recentTitle">Recent inquiries</h2>
+            </div>
+            <a class="abtn abtn--ghost" href="/admin/inquiries">All inquiries <span aria-hidden="true">↗</span></a>
+          </div>
+          <div class="table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th scope="col">Name</th>
+                  <th scope="col">Website type</th>
+                  <th scope="col">Budget</th>
+                  <th scope="col">Status</th>
+                  <th scope="col">Date</th>
+                </tr>
+              </thead>
+              <tbody id="recentBody">
+                <tr><td colspan="5"><div class="loading-state"><span class="spinner" aria-hidden="true"></span> Loading inquiries</div></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="panel" aria-labelledby="quickTitle">
+          <div class="panel__head">
+            <div>
+              <p class="admin-eyebrow">Make a change</p>
+              <h2 class="panel__title" id="quickTitle">Quick actions</h2>
+            </div>
+          </div>
+          <div class="panel__body">
+            <div class="admin-page-actions">
+              <a class="abtn" href="/admin/projects">Manage projects <span aria-hidden="true">↗</span></a>
+              <a class="abtn" href="/admin/services">Edit service pricing <span aria-hidden="true">↗</span></a>
+              <a class="abtn" href="/admin/settings">Account settings <span aria-hidden="true">↗</span></a>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+  <noscript><p class="noscript-banner">The admin dashboard needs JavaScript. Please enable it to continue.</p></noscript>
+  <script src="/admin/assets/admin.js" defer></script>
+  <script src="/admin/assets/dashboard.js" defer></script>
+</body>
+</html>

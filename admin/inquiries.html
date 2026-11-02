@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f3eee3">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Inquiries — NeedYourSite Admin</title>
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/admin/assets/admin.css">
+</head>
+<body class="admin-body" data-page="inquiries">
+  <div class="admin-shell">
+    <div class="admin-overlay" id="adminOverlay" hidden></div>
+    <aside class="admin-sidebar" id="adminSidebar" aria-label="Admin navigation">
+      <div class="admin-sidebar__brand">
+        <a class="admin-brand admin-brand--admin" href="/admin" aria-label="NeedYourSite admin — overview">
+          <svg class="admin-brand__star" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2.4v19.2M2.4 12h19.2M5.2 5.2l13.6 13.6M18.8 5.2 5.2 18.8"/></svg>
+          <span>NeedYourSite<span class="admin-brand__dot">.</span></span>
+        </a>
+        <p class="admin-sidebar__studio">Studio admin / 2026</p>
+      </div>
+      <nav class="admin-nav" id="adminNav" aria-label="Admin sections"></nav>
+      <div class="admin-sidebar__spacer"></div>
+      <div class="admin-sidebar__foot">
+        <div class="admin-sidebar__user"><span class="admin-avatar" data-admin-initials>NY</span><span data-admin-email>Signed in</span></div>
+        <a class="admin-sidebar__link" href="/" target="_blank" rel="noopener">View public site <span aria-hidden="true">↗</span></a>
+        <button class="admin-sidebar__link" type="button" data-logout>Sign out <span aria-hidden="true">↖</span></button>
+      </div>
+    </aside>
+
+    <div class="admin-main">
+      <header class="admin-topbar">
+        <div class="admin-topbar__inner">
+          <div class="admin-topbar__left">
+            <button class="admin-menu-button" id="adminMenuToggle" type="button" aria-label="Open admin menu" aria-expanded="false" aria-controls="adminSidebar">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 5h18M3 12h18M3 19h18"/></svg>
+            </button>
+            <p class="admin-topbar__crumb">Studio / Inquiries</p>
+          </div>
+          <div class="admin-topbar__right"><a class="admin-topbar__site" href="/" target="_blank" rel="noopener">View site <span aria-hidden="true">↗</span></a></div>
+        </div>
+      </header>
+
+      <main class="admin-page">
+        <header class="admin-page-head">
+          <div>
+            <p class="admin-eyebrow">Lead management</p>
+            <h1 class="admin-title">Project<br><em>inquiries.</em></h1>
+            <p class="admin-sub">Read every brief, keep the status current and reply from one place.</p>
+          </div>
+        </header>
+
+        <section class="panel" aria-labelledby="inquiryListTitle">
+          <div class="panel__head">
+            <div>
+              <p class="admin-eyebrow">Pipeline</p>
+              <h2 class="panel__title" id="inquiryListTitle">All inquiries</h2>
+            </div>
+            <p class="panel__meta" id="resultsCount">Loading…</p>
+          </div>
+
+          <div class="filters" role="search" aria-label="Filter inquiries">
+            <div class="filter-field">
+              <label for="inquirySearch">Search</label>
+              <input class="input" id="inquirySearch" type="search" placeholder="Name, email, business or phone" autocomplete="off">
+            </div>
+            <div class="filter-field">
+              <label for="statusFilter">Status</label>
+              <select class="select" id="statusFilter">
+                <option value="">All statuses</option>
+                <option>NEW</option>
+                <option>CONTACTED</option>
+                <option>IN DISCUSSION</option>
+                <option>CONFIRMED</option>
+                <option>REJECTED</option>
+              </select>
+            </div>
+            <div class="filter-field">
+              <label for="typeFilter">Website type</label>
+              <select class="select" id="typeFilter">
+                <option value="">All types</option>
+                <option>Portfolio Website</option>
+                <option>Business Website</option>
+                <option>E-commerce Website</option>
+                <option>Hospital / Clinic Website</option>
+                <option>Dental Chamber Website</option>
+                <option>Doctor / Professional Website</option>
+                <option>Educational Website</option>
+                <option>Personal Brand Website</option>
+                <option>Custom Website</option>
+              </select>
+            </div>
+            <div class="filter-field">
+              <label for="sortFilter">Sort</label>
+              <select class="select" id="sortFilter">
+                <option value="newest">Newest first</option>
+                <option value="oldest">Oldest first</option>
+              </select>
+            </div>
+            <div class="filters__actions">
+              <button class="abtn" id="clearFilters" type="button">Clear</button>
+            </div>
+          </div>
+
+          <div class="table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th scope="col">Name</th>
+                  <th scope="col">Website type</th>
+                  <th scope="col">Budget</th>
+                  <th scope="col">Status</th>
+                  <th scope="col">Date</th>
+                  <th scope="col"><span class="sr-only">Actions</span></th>
+                </tr>
+              </thead>
+              <tbody id="inquiryBody">
+                <tr><td colspan="6"><div class="loading-state"><span class="spinner" aria-hidden="true"></span> Loading inquiries</div></td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="results-meta">
+            <span id="resultsRange">—</span>
+            <div class="pagination">
+              <button class="abtn abtn--sm" id="prevPage" type="button" disabled>Previous</button>
+              <span id="pageLabel">Page 1</span>
+              <button class="abtn abtn--sm" id="nextPage" type="button" disabled>Next</button>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <dialog class="adialog adialog--wide" id="inquiryDialog" aria-labelledby="detailName">
+    <div class="adialog__head">
+      <div>
+        <p class="adialog__label">Inquiry <span id="detailReference"></span></p>
+        <p class="adialog__sub" id="detailReceived"></p>
+      </div>
+      <button class="adialog__close" id="detailClose" type="button" aria-label="Close inquiry">×</button>
+    </div>
+    <div class="adialog__body">
+      <h2 class="adialog__title" id="detailName"></h2>
+      <p class="adialog__sub" id="detailMeta"></p>
+      <dl class="detail-grid" id="detailGrid"></dl>
+      <div class="detail-item">
+        <dt>Project description</dt>
+        <dd class="detail-description" id="detailDescription"></dd>
+      </div>
+      <div class="detail-status">
+        <div class="afield">
+          <label for="detailStatus">Update status</label>
+          <select class="select" id="detailStatus">
+            <option>NEW</option>
+            <option>CONTACTED</option>
+            <option>IN DISCUSSION</option>
+            <option>CONFIRMED</option>
+            <option>REJECTED</option>
+          </select>
+          <p class="afield__error" id="detailStatusError" aria-live="polite"></p>
+        </div>
+        <button class="abtn abtn--dark" id="saveStatus" type="button">Save status</button>
+      </div>
+      <div class="detail-actions">
+        <a class="abtn" id="replyEmail" href="#">Reply by email <span aria-hidden="true">↗</span></a>
+        <a class="abtn" id="callPhone" href="#">Call / WhatsApp <span aria-hidden="true">↗</span></a>
+      </div>
+    </div>
+    <div class="adialog__foot">
+      <button class="abtn" id="detailDone" type="button">Close</button>
+    </div>
+  </dialog>
+
+  <noscript><p class="noscript-banner">Inquiry management needs JavaScript. Please enable it to continue.</p></noscript>
+  <script src="/admin/assets/admin.js" defer></script>
+  <script src="/admin/assets/inquiries.js" defer></script>
+</body>
+</html>

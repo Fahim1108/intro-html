@@ -1,0 +1,31 @@
+services:
+  - type: web
+    name: needyoursite
+    runtime: node
+    plan: starter
+    region: singapore
+    branch: main
+    buildCommand: npm ci
+    startCommand: npm start
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_VERSION
+        value: 22.13.0
+      - key: NODE_ENV
+        value: production
+      - key: TRUST_PROXY
+        value: "1"
+      - key: DATABASE_PATH
+        value: /var/data/needyoursite.db
+      - key: UPLOAD_DIR
+        value: /var/data/uploads/projects
+      - key: APP_ORIGIN
+        sync: false
+      - key: ADMIN_EMAIL
+        sync: false
+      - key: ADMIN_PASSWORD
+        sync: false
+    disk:
+      name: needyoursite-data
+      mountPath: /var/data
+      sizeGB: 1

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f3eee3">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Services &amp; pricing — NeedYourSite Admin</title>
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/admin/assets/admin.css">
+</head>
+<body class="admin-body" data-page="services">
+  <div class="admin-shell">
+    <div class="admin-overlay" id="adminOverlay" hidden></div>
+    <aside class="admin-sidebar" id="adminSidebar" aria-label="Admin navigation">
+      <div class="admin-sidebar__brand">
+        <a class="admin-brand admin-brand--admin" href="/admin" aria-label="NeedYourSite admin — overview">
+          <svg class="admin-brand__star" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2.4v19.2M2.4 12h19.2M5.2 5.2l13.6 13.6M18.8 5.2 5.2 18.8"/></svg>
+          <span>NeedYourSite<span class="admin-brand__dot">.</span></span>
+        </a>
+        <p class="admin-sidebar__studio">Studio admin / 2026</p>
+      </div>
+      <nav class="admin-nav" id="adminNav" aria-label="Admin sections"></nav>
+      <div class="admin-sidebar__spacer"></div>
+      <div class="admin-sidebar__foot">
+        <div class="admin-sidebar__user"><span class="admin-avatar" data-admin-initials>NY</span><span data-admin-email>Signed in</span></div>
+        <a class="admin-sidebar__link" href="/" target="_blank" rel="noopener">View public site <span aria-hidden="true">↗</span></a>
+        <button class="admin-sidebar__link" type="button" data-logout>Sign out <span aria-hidden="true">↖</span></button>
+      </div>
+    </aside>
+
+    <div class="admin-main">
+      <header class="admin-topbar">
+        <div class="admin-topbar__inner">
+          <div class="admin-topbar__left">
+            <button class="admin-menu-button" id="adminMenuToggle" type="button" aria-label="Open admin menu" aria-expanded="false" aria-controls="adminSidebar">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 5h18M3 12h18M3 19h18"/></svg>
+            </button>
+            <p class="admin-topbar__crumb">Studio / Services &amp; pricing</p>
+          </div>
+          <div class="admin-topbar__right"><a class="admin-topbar__site" href="/" target="_blank" rel="noopener">View site <span aria-hidden="true">↗</span></a></div>
+        </div>
+      </header>
+
+      <main class="admin-page">
+        <header class="admin-page-head">
+          <div>
+            <p class="admin-eyebrow">What we build</p>
+            <h1 class="admin-title">Services<br><em>&amp; pricing.</em></h1>
+            <p class="admin-sub">Edit the starting points on the public website. A service’s name, starting price and display order update the service grid.</p>
+          </div>
+          <div class="admin-page-actions">
+            <button class="abtn abtn--primary" id="addService" type="button">Add service <span aria-hidden="true">+</span></button>
+          </div>
+        </header>
+
+        <section class="panel" aria-labelledby="servicesTitle">
+          <div class="panel__head">
+            <div>
+              <p class="admin-eyebrow">Public offering</p>
+              <h2 class="panel__title" id="servicesTitle">Starting points</h2>
+            </div>
+            <p class="panel__meta" id="servicesCount">Loading…</p>
+          </div>
+          <div id="servicesList" aria-live="polite">
+            <div class="loading-state"><span class="spinner" aria-hidden="true"></span> Loading services</div>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <dialog class="adialog" id="serviceDialog" aria-labelledby="serviceDialogTitle">
+    <form id="serviceForm" novalidate>
+      <div class="adialog__head">
+        <div>
+          <p class="adialog__label" id="serviceDialogLabel">Edit the offering</p>
+          <h2 class="adialog__title" id="serviceDialogTitle">New service</h2>
+        </div>
+        <button class="adialog__close" type="button" data-service-cancel aria-label="Close service form">×</button>
+      </div>
+      <div class="adialog__body">
+        <div class="aform__error" id="serviceFormError" role="alert" hidden></div>
+        <input type="hidden" id="serviceId" name="id">
+        <input type="hidden" id="serviceWebsiteType" name="websiteType">
+        <div class="aform">
+          <div class="afield">
+            <label for="serviceName">Service name <span class="req" aria-hidden="true">*</span></label>
+            <input class="input" id="serviceName" name="name" type="text" required maxlength="80" autocomplete="off">
+            <p class="afield__error" id="serviceNameError" aria-live="polite"></p>
+          </div>
+          <div class="aform-grid">
+            <div class="afield">
+              <label for="servicePrice">Starting price (BDT) <span class="req" aria-hidden="true">*</span></label>
+              <input class="input" id="servicePrice" name="startingPrice" type="number" required min="0" max="10000000" step="500" inputmode="numeric">
+              <p class="afield__error" id="servicePriceError" aria-live="polite"></p>
+            </div>
+            <div class="afield">
+              <label for="serviceOrder">Display order</label>
+              <input class="input" id="serviceOrder" name="displayOrder" type="number" min="0" max="10000" step="1" inputmode="numeric" placeholder="Next">
+              <p class="afield__hint">Lower numbers appear first.</p>
+              <p class="afield__error" id="serviceOrderError" aria-live="polite"></p>
+            </div>
+          </div>
+          <div class="afield">
+            <label for="serviceDescription">Description</label>
+            <textarea class="textarea" id="serviceDescription" name="description" maxlength="500" rows="4" placeholder="A short internal note used as context on the site."></textarea>
+            <p class="afield__error" id="serviceDescriptionError" aria-live="polite"></p>
+          </div>
+          <p class="afield__hint">Changes appear on the public site after the next page load.</p>
+        </div>
+      </div>
+      <div class="adialog__foot">
+        <button class="abtn" type="button" data-service-cancel>Cancel</button>
+        <button class="abtn abtn--primary" id="saveService" type="submit">Save service <span aria-hidden="true">↗</span></button>
+      </div>
+    </form>
+  </dialog>
+
+  <noscript><p class="noscript-banner">Service management needs JavaScript. Please enable it to continue.</p></noscript>
+  <script src="/admin/assets/admin.js" defer></script>
+  <script src="/admin/assets/services.js" defer></script>
+</body>
+</html>

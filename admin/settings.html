@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f3eee3">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Settings — NeedYourSite Admin</title>
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/admin/assets/admin.css">
+</head>
+<body class="admin-body" data-page="settings">
+  <div class="admin-shell">
+    <div class="admin-overlay" id="adminOverlay" hidden></div>
+    <aside class="admin-sidebar" id="adminSidebar" aria-label="Admin navigation">
+      <div class="admin-sidebar__brand">
+        <a class="admin-brand admin-brand--admin" href="/admin" aria-label="NeedYourSite admin — overview">
+          <svg class="admin-brand__star" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2.4v19.2M2.4 12h19.2M5.2 5.2l13.6 13.6M18.8 5.2 5.2 18.8"/></svg>
+          <span>NeedYourSite<span class="admin-brand__dot">.</span></span>
+        </a>
+        <p class="admin-sidebar__studio">Studio admin / 2026</p>
+      </div>
+      <nav class="admin-nav" id="adminNav" aria-label="Admin sections"></nav>
+      <div class="admin-sidebar__spacer"></div>
+      <div class="admin-sidebar__foot">
+        <div class="admin-sidebar__user"><span class="admin-avatar" data-admin-initials>NY</span><span data-admin-email>Signed in</span></div>
+        <a class="admin-sidebar__link" href="/" target="_blank" rel="noopener">View public site <span aria-hidden="true">↗</span></a>
+        <button class="admin-sidebar__link" type="button" data-logout>Sign out <span aria-hidden="true">↖</span></button>
+      </div>
+    </aside>
+
+    <div class="admin-main">
+      <header class="admin-topbar">
+        <div class="admin-topbar__inner">
+          <div class="admin-topbar__left">
+            <button class="admin-menu-button" id="adminMenuToggle" type="button" aria-label="Open admin menu" aria-expanded="false" aria-controls="adminSidebar">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 5h18M3 12h18M3 19h18"/></svg>
+            </button>
+            <p class="admin-topbar__crumb">Studio / Settings</p>
+          </div>
+          <div class="admin-topbar__right"><a class="admin-topbar__site" href="/" target="_blank" rel="noopener">View site <span aria-hidden="true">↗</span></a></div>
+        </div>
+      </header>
+
+      <main class="admin-page">
+        <header class="admin-page-head">
+          <div>
+            <p class="admin-eyebrow">Account</p>
+            <h1 class="admin-title">Studio<br><em>settings.</em></h1>
+            <p class="admin-sub">Manage the credentials used to access the NeedYourSite admin workspace.</p>
+          </div>
+        </header>
+
+        <div class="settings-grid">
+          <section class="settings-card" aria-labelledby="accountTitle">
+            <p class="admin-eyebrow">Credentials</p>
+            <h2 id="accountTitle">Admin access</h2>
+            <p>Changing your password signs out every active session, including this one.</p>
+            <div class="login-error" id="accountError" role="alert" hidden></div>
+            <form class="aform" id="accountForm" novalidate>
+              <div class="afield">
+                <label for="accountEmail">Email address <span class="req" aria-hidden="true">*</span></label>
+                <input class="input" id="accountEmail" name="email" type="email" autocomplete="username" required maxlength="254">
+                <p class="afield__error" id="emailError" aria-live="polite"></p>
+              </div>
+              <div class="afield">
+                <label for="currentPassword">Current password <span class="req" aria-hidden="true">*</span></label>
+                <input class="input" id="currentPassword" name="currentPassword" type="password" autocomplete="current-password" required>
+                <p class="afield__error" id="currentPasswordError" aria-live="polite"></p>
+              </div>
+              <div class="aform-grid">
+                <div class="afield">
+                  <label for="newPassword">New password</label>
+                  <input class="input" id="newPassword" name="newPassword" type="password" autocomplete="new-password" minlength="12" maxlength="200">
+                  <p class="afield__hint">At least 12 characters. Leave empty to keep the current password.</p>
+                  <p class="afield__error" id="newPasswordError" aria-live="polite"></p>
+                </div>
+                <div class="afield">
+                  <label for="confirmPassword">Confirm new password</label>
+                  <input class="input" id="confirmPassword" name="confirmPassword" type="password" autocomplete="new-password" minlength="12" maxlength="200">
+                  <p class="afield__error" id="confirmPasswordError" aria-live="polite"></p>
+                </div>
+              </div>
+              <div class="aform__actions">
+                <button class="abtn abtn--primary" id="saveAccount" type="submit">Save changes <span aria-hidden="true">↗</span></button>
+              </div>
+            </form>
+          </section>
+
+          <aside>
+            <section class="settings-card" aria-labelledby="securityTitle">
+              <p class="admin-eyebrow">Security</p>
+              <h2 id="securityTitle">How access works</h2>
+              <div class="security-note">
+                <span aria-hidden="true">✳</span>
+                <div>
+                  <b>Server-side sessions</b>
+                  Passwords are hashed with scrypt. Session tokens are stored as hashes and sent only in an HTTP-only, same-site cookie.
+                </div>
+              </div>
+              <div class="security-note">
+                <span aria-hidden="true">✳</span>
+                <div>
+                  <b>Sign out everywhere</b>
+                  Saving a new password invalidates all admin sessions. Update the password in your password manager immediately.
+                </div>
+              </div>
+              <div class="security-note">
+                <span aria-hidden="true">✳</span>
+                <div>
+                  <b>Keep environment credentials private</b>
+                  Never commit the <code>.env</code> file. Production admin bootstrap values belong in your host’s secret manager.
+                </div>
+              </div>
+            </section>
+
+            <section class="settings-card" aria-labelledby="sessionTitle">
+              <p class="admin-eyebrow">This session</p>
+              <h2 id="sessionTitle">Signed in as</h2>
+              <p data-admin-email>Admin</p>
+              <div class="aform__actions">
+                <button class="abtn abtn--danger" type="button" data-logout>Sign out</button>
+              </div>
+            </section>
+          </aside>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <noscript><p class="noscript-banner">Account settings need JavaScript. Please enable it to continue.</p></noscript>
+  <script src="/admin/assets/admin.js" defer></script>
+  <script src="/admin/assets/settings.js" defer></script>
+</body>
+</html>

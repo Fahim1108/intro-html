@@ -1,0 +1,11 @@
+/freebuff-sites-build/
+node_modules/
+.env
+.env.local
+data/*.db
+data/*.db-*
+uploads/projects/*
+!uploads/projects/.gitkeep
+!data/.gitkeep
+npm-debug.log*
+.DS_Store
